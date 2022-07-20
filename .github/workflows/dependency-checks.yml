@@ -1,0 +1,23 @@
+name: Check Outdated
+
+on: [push] # push, cronjob, etc. https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows
+
+jobs:
+  check_updates:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Install npm
+        run: npm install
+      - name: Check outdated
+        run: npm outdated
+  check_unused:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Install dependency checker
+        run: yarn global add depcheck
+      - name: Check for unused dependencies
+        run: depcheck
