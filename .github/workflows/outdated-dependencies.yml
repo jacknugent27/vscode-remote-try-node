@@ -15,6 +15,8 @@ jobs:
   check_unused:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
       - name: Install dependency checker
         run: yarn global add depcheck
       - name: Check for unused dependencies
