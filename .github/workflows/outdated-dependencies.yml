@@ -1,6 +1,6 @@
 name: Check Outdated
 
-on: [push] # pull request, cronjob, etc. https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows
+on: [push] # push, cronjob, etc. https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows
 
 jobs:
   check_updates:
@@ -10,5 +10,9 @@ jobs:
         uses: actions/checkout@v2
       - name: Install npm
         run: npm install
-      - name: Check outdated
-        run: npm outdated
+      # - name: Check outdated
+      #   run: npm outdated
+      - name: Install dependency checker
+        run: yarn global add depcheck
+      - name: Check for unused dependencies
+        run: depcheck
